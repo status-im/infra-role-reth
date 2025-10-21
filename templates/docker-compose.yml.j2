@@ -1,0 +1,24 @@
+#vim:ft=yml
+---
+services:
+  reth:
+    image: '{{ reth_cont_image }}'
+    container_name: '{{ reth_cont_name }}'
+    ports:
+      - '{{ reth_cont_port_listening }}:{{ reth_cont_port_listening }}'
+      - '{{ reth_cont_port_rpc }}:{{ reth_cont_port_rpc }}'
+      - '{{ reth_cont_port_engine }}:{{ reth_cont_port_engine }}'
+      - '{{ reth_cont_port_metrics }}:{{ reth_cont_port_metrics }}'
+    volumes:
+      - '{{ reth_cont_vol_data }}:/root/.local/share/reth/{{ reth_config_network_name }}'
+      - '{{ reth_cont_vol_secrets }}:/root/jwt:ro'
+    command: >
+      node
+      --chain {{ reth_config_network_name }}
+      --authrpc.addr 0.0.0.0
+      --authrpc.port {{ reth_cont_port_engine }}
+      --authrpc.jwtsecret /root/jwt/jwt.hex
+      --http --http.addr 0.0.0.0 --http.port {{ reth_cont_port_rpc }}
+      --http.api "eth,net,web3"
+      --metrics 0.0.0.0:{{ reth_cont_port_metrics }}
+

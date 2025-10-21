@@ -1,0 +1,23 @@
+---
+- name: Create service directories
+  file:
+    path:  '{{ item }}'
+    state: 'directory'
+    owner: 'dockremap'
+    group: 'docker'
+    mode:  '0750'
+  with_items:
+    - '{{ reth_service_path }}'
+    - '{{ reth_cont_vol_data }}'
+    - '{{ reth_cont_vol_secrets }}'
+
+- name: 'Create jwt secrets for execution Node'
+  when: reth_config_jwt_secret is defined
+  copy:
+    dest:    '{{ reth_cont_vol_secrets }}/jwt.hex'
+    content: '{{ reth_config_jwt_secret }}'
+    owner:   '{{ reth_user }}'
+    group:   '{{ reth_group }}'
+    mode:    0400
+
+

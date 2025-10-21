@@ -1,0 +1,7 @@
+---
+- import_tasks: config.yml
+  tags: ['role::reth', 'role::reth:config']
+- import_tasks: docker.yml
+  tags: ['role::reth', 'role::reth:docker']
+- import_tasks: consul.yml
+  tags: ['role::reth', 'role::reth:consul']

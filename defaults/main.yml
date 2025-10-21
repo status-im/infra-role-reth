@@ -1,0 +1,40 @@
+---
+reth_service_name: 'reth'
+reth_service_path: '/docker/{{ reth_service_name }}'
+reth_user:         'dockremap'
+reth_group:        'docker'
+
+# Docker
+reth_cont_image: 'ghcr.io/paradigmxyz/reth:{{ reth_cont_tag }}'
+reth_cont_tag: 'v1.8.2'
+reth_cont_name: 'reth'
+reth_cont_port_listening: 30303
+reth_cont_port_rpc: 8545
+reth_cont_port_engine: 8551
+reth_cont_port_metrics: 9010
+reth_cont_vol_data: '{{ reth_service_path }}/data'
+reth_cont_vol_secrets: '{{ reth_service_path }}/secrets'
+
+# Configuration
+reth_config_network_name: 'mainnet'
+reth_config_execution_endpoint:  'http://localhost:8551'
+reth_config_jwt_secret_path:     '/secrets/jwt.hex'
+reth_config_checkpoint_sync_url: 'https://mainnet.checkpoint.sigp.io'
+reth_config_jwt_secret:         # 'ChangeMeIfYouCare'
+reth_config_debug_level: 'INFO'
+
+# Consul Service
+reth_consul_config_name: '{{ reth_service_name | replace("-", "_") }}'
+reth_consul_service_name: '{{ reth_service_name }}'
+reth_consul_tags: ['reth', 'eth', 'bn']
+reth_consul_check_disabled: false
+reth_consul_check_interval: '60s'
+reth_consul_check_timeout: '5s'
+reth_consul_success_before_passing: 0
+reth_consul_failures_before_warning: 1
+reth_consul_failures_before_critical: 2
+
+# general container management
+compose_recreate: 'auto'
+compose_state: 'present'
+compose_pull: 'always'
