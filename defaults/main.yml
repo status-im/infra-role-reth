@@ -20,6 +20,7 @@ reth_config_network_name: 'mainnet'
 reth_config_execution_endpoint:  'http://localhost:8551'
 reth_config_jwt_secret_path:     '/secrets/jwt.hex'
 reth_config_checkpoint_sync_url: 'https://mainnet.checkpoint.sigp.io'
+reth_config_partial_pruning: False
 reth_config_jwt_secret:         # 'ChangeMeIfYouCare'
 reth_config_debug_level: 'INFO'
 

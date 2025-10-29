@@ -20,5 +20,8 @@ services:
       --authrpc.jwtsecret /root/jwt/jwt.hex
       --http --http.addr 0.0.0.0 --http.port {{ reth_cont_port_rpc }}
       --http.api "eth,net,web3"
+      {% if reth_config_partial_pruning %}
+      --prune.receipts.pre-merge --prune.bodies.pre-merge
+      {% endif %}
       --metrics 0.0.0.0:{{ reth_cont_port_metrics }}
 
