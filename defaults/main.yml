@@ -23,6 +23,74 @@ reth_config_checkpoint_sync_url: 'https://mainnet.checkpoint.sigp.io'
 reth_config_partial_pruning: False
 reth_config_jwt_secret:         # 'ChangeMeIfYouCare'
 reth_config_debug_level: 'INFO'
+# Node Configuration
+## Header
+reth_headers_downloader_max_concurrent_requests: 100
+reth_headers_downloader_min_concurrent_requests: 5
+reth_headers_downloader_max_buffered_responses: 100
+reth_headers_downloader_request_limit: 1000
+reth_headers_commit_threshold: 10000
+## Body
+reth_bodies_downloader_request_limit: 200
+reth_bodies_downloader_stream_batch_size: 1000
+reth_bodies_downloader_max_buffered_blocks_size_bytes: 2147483648
+reth_bodies_downloader_min_concurrent_requests: 5
+reth_bodies_downloader_max_concurrent_requests: 100
+reth_sender_recovery_commit_threshold: 5000000
+## Execution configuration
+reth_execution_max_blocks: 500000
+reth_execution_max_changes: 5000000
+reth_execution_max_cumulative_gas: 1500000000000
+reth_execution_max_duration: '10m'
+reth_account_hashing_clean_threshold: 500000
+reth_account_hashing_commit_threshold: 100000
+reth_storage_hashing_clean_threshold: 500000
+reth_storage_hashing_commit_threshold: 100000
+reth_merkle_incremental_threshold: 7000
+reth_merkle_rebuild_threshold: 100000
+reth_transaction_lookup_chunk_size: 5000000
+reth_index_account_history_commit_threshold: 100000
+reth_index_storage_history_commit_threshold: 100000
+reth_etl_file_size: 524288000
+# Pruning
+reth_prune_commit_threshold: 1000000
+reth_prune_block_interval: 5
+reth_prune_segments_receipts_before: 15537394
+reth_prune_segments_bodies_history_before: 15537394
+reth_prune_segments_merkle_changesets_distance: 10064
+# Peer configuration
+reth_peers_refill_slots_interval: '5s'
+reth_peers_trusted_nodes: []
+reth_peers_trusted_nodes_only: false
+reth_peers_trusted_nodes_resolution_interval: '1h'
+reth_peers_max_backoff_count: 5
+reth_peers_ban_duration: '12h'
+reth_peers_incoming_ip_throttle_duration: '30s'
+reth_peers_connection_info_max_outbound: 100
+reth_peers_connection_info_max_inbound: 30
+reth_peers_connection_info_max_concurrent_outbound_dials: 15
+reth_peers_reputation_weights_bad_message: -16384
+reth_peers_reputation_weights_bad_block: -16384
+reth_peers_reputation_weights_bad_transactions: -16384
+reth_peers_reputation_weights_already_seen_transactions: 0
+reth_peers_reputation_weights_timeout: -4096
+reth_peers_reputation_weights_bad_protocol: -2147483648
+reth_peers_reputation_weights_failed_to_connect: -25600
+reth_peers_reputation_weights_dropped: -4096
+reth_peers_reputation_weights_bad_announcement: -1024
+reth_peers_backoff_durations_low: '30s'
+reth_peers_backoff_durations_medium: '3m'
+reth_peers_backoff_durations_high: '15m'
+reth_peers_backoff_durations_max: '1h'
+# sessions configuration
+reth_sessions_session_command_buffer: 32
+reth_sessions_session_event_buffer: 260
+reth_sessions_initial_internal_request_timeout_secs: 20
+reth_sessions_initial_internal_request_timeout_nanos: 0
+reth_sessions_protocol_breach_request_timeout_secs: 120
+reth_sessions_protocol_breach_request_timeout_nanos: 0
+reth_sessions_pending_session_timeout_secs: 20
+reth_sessions_pending_session_timeout_nanos: 0
 
 # Consul Service
 reth_consul_config_name: '{{ reth_service_name | replace("-", "_") }}'

@@ -11,7 +11,7 @@
     - '{{ reth_cont_vol_data }}'
     - '{{ reth_cont_vol_secrets }}'
 
-- name: 'Create jwt secrets for execution Node'
+- name: Create jwt secrets for execution Node
   when: reth_config_jwt_secret is defined
   copy:
     dest:    '{{ reth_cont_vol_secrets }}/jwt.hex'
@@ -20,4 +20,10 @@
     group:   '{{ reth_group }}'
     mode:    0400
 
-
+- name: Create configuration file
+  template:
+    src: 'config.toml.j2'
+    dest: '{{ reth_cont_vol_data }}/reth.toml'
+    owner: 'dockremap'
+    group: 'docker'
+    mode: '0664'
