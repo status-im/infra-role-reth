@@ -14,7 +14,7 @@
       - id:      '{{ reth_service_name }}'
         name:    '{{ reth_consul_service_name }}'
         tags:    '{{ reth_consul_tags }}'
-        port:    '{{ reth_cont_port_rpc }}'
+        port:    '{{ reth_cont_port_http_rpc }}'
         address: '{{ ansible_local.wireguard.address }}'
         checks:
           - id:   '{{ reth_consul_service_name }}-api-health'

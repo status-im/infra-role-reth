@@ -6,10 +6,11 @@ reth_group:        'docker'
 
 # Docker
 reth_cont_image: 'ghcr.io/paradigmxyz/reth:{{ reth_cont_tag }}'
-reth_cont_tag: 'v1.8.2'
+reth_cont_tag: 'v1.9.3'
 reth_cont_name: 'reth'
 reth_cont_port_listening: 30303
-reth_cont_port_rpc: 8545
+reth_cont_port_http_rpc: 8545
+reth_cont_port_ws_rpc: 8546
 reth_cont_port_engine: 8551
 reth_cont_port_metrics: 9010
 reth_cont_vol_data: '{{ reth_service_path }}/data'

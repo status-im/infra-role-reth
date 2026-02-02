@@ -6,7 +6,8 @@ services:
     container_name: '{{ reth_cont_name }}'
     ports:
       - '{{ reth_cont_port_listening }}:{{ reth_cont_port_listening }}'
-      - '{{ reth_cont_port_rpc }}:{{ reth_cont_port_rpc }}'
+      - '{{ reth_cont_port_http_rpc }}:{{ reth_cont_port_http_rpc }}'
+      - '{{ reth_cont_port_ws_rpc }}:{{ reth_cont_port_ws_rpc }}'
       - '{{ reth_cont_port_engine }}:{{ reth_cont_port_engine }}'
       - '{{ reth_cont_port_metrics }}:{{ reth_cont_port_metrics }}'
     volumes:
@@ -18,7 +19,9 @@ services:
       --authrpc.addr 0.0.0.0
       --authrpc.port {{ reth_cont_port_engine }}
       --authrpc.jwtsecret /root/jwt/jwt.hex
-      --http --http.addr 0.0.0.0 --http.port {{ reth_cont_port_rpc }}
-      --http.api "eth,net,web3"
+      --http --http.addr 0.0.0.0 --http.port {{ reth_cont_port_http_rpc }}
+      --http.api all
+      --ws --ws.api all
+      --ws.addr 0.0.0.0 --ws.port {{ reth_cont_port_ws_rpc }}
       --metrics 0.0.0.0:{{ reth_cont_port_metrics }}
 
