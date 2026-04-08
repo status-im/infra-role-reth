@@ -6,7 +6,7 @@ reth_group:        'docker'
 
 # Docker
 reth_cont_image: 'ghcr.io/paradigmxyz/reth:{{ reth_cont_tag }}'
-reth_cont_tag: 'v1.9.3'
+reth_cont_tag: 'v1.11.3'
 reth_cont_name: 'reth'
 reth_cont_port_listening: 30303
 reth_cont_port_http_rpc: 8545
