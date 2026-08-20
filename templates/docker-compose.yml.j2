@@ -4,6 +4,7 @@ services:
   reth:
     image: '{{ reth_cont_image }}'
     container_name: '{{ reth_cont_name }}'
+    stop_grace_period: '{{ reth_cont_stop_grace_period }}'
     ports:
       - '{{ reth_cont_port_listening }}:{{ reth_cont_port_listening }}'
       - '{{ reth_cont_port_http_rpc }}:{{ reth_cont_port_http_rpc }}'
