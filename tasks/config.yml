@@ -11,6 +11,24 @@
     - '{{ reth_cont_vol_data }}'
     - '{{ reth_cont_vol_secrets }}'
 
+- name: Create static files directory
+  when: reth_static_files_path | length > 0
+  file:
+    path:  '{{ reth_static_files_path }}'
+    state: 'directory'
+    owner: '{{ reth_user }}'
+    group: '{{ reth_group }}'
+    mode:  '0750'
+
+- name: Bind mount static files into data directory
+  when: reth_static_files_path | length > 0
+  ansible.posix.mount:
+    src:    '{{ reth_static_files_path }}'
+    path:   '{{ reth_cont_vol_data }}/static_files'
+    opts:   'bind'
+    fstype: 'none'
+    state:  'mounted'
+
 - name: Create jwt secrets for execution Node
   when: reth_config_jwt_secret is defined
   copy:
